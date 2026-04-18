@@ -1,82 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | MOHD ANAS</title>
+    <title>About | Mohd Anas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet">
     <style>
-        :root { --bg: #fcfaf7; --text: #1a1a1a; --dim: #71717a; --border: rgba(0,0,0,0.08); }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass-nav { background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-        
-        .banner-shadow {
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-            transition: transform 0.5s ease;
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface2: #161616;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --text: #f0ece4;
+            --muted: #6b6b6b;
+            --accent: #c8f247;
+            --accent2: #4fffb0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Syne', sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 500;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a.active {
+            color: var(--text);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .nav-cta {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 0.6rem 1.4rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent2);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 3rem 5rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .page-header {
+            margin-bottom: 5rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .page-header h1 span.hollow {
+            -webkit-text-stroke: 1px rgba(240, 236, 228, 0.2);
+            color: transparent;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 6rem;
+            align-items: start;
+            margin-bottom: 6rem;
+        }
+
+        .about-photo {
+            position: sticky;
+            top: 7rem;
+        }
+
+        .photo-frame {
+            aspect-ratio: 3/4;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+        }
+
+        .photo-detail-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .photo-detail-role {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 0.1rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent2);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent2);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.4);
+            }
+        }
+
+        .about-content .intro {
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .philosophy-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-left: 3px solid var(--accent);
+        }
+
+        .philosophy-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .philosophy-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-top: 6rem;
+        }
+
+        .timeline-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(200, 242, 71, 0.15);
+        }
+
+        .timeline-date {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .timeline-org {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 500px;
+        }
+
+        /* Currently Learning */
+        .learning-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .learning-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: border-color 0.25s;
+        }
+
+        .learning-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .learning-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .learning-topic {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .learning-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 2.5rem 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            main {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-photo {
+                position: static;
+            }
+
+            .learning-cards {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-            <div class="font-extrabold text-xl tracking-tighter uppercase">
-                <a href="index.html" class="no-underline text-black">MOHD ANAS</a>
-            </div>
-            <div class="flex gap-10 text-[13px] font-bold tracking-widest text-zinc-400">
-                <a href="index.html" class="hover:text-black transition">HOME</a>
-                <a href="about.html" class="text-black">ABOUT</a>
-                <a href="projects.html" class="hover:text-black transition">PROJECTS</a>
-                <a href="contact.html" class="hover:text-black transition">CONTACT</a>
-            </div>
+    <nav>
+        <a href="index.html" class="nav-logo">Mohd Anas</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
         </div>
+        <a href="contact.html" class="nav-cta">Hire Me</a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
-        
-        <div class="w-full mb-16 reveal">
-            <div class="w-full rounded-[2.5rem] overflow-hidden banner-shadow border border-black/5 bg-zinc-100">
-                <img src="images/Black and White Modern Business LinkedIn Banner.png" 
-                     alt="Mohd Anas Professional Banner" 
-                     class="w-full h-auto object-cover max-h-[400px]">
+    <main>
+        <div class="page-header reveal">
+            <div class="section-label">Who I Am</div>
+            <h1>ABOUT<br><span class="hollow">ME</span></h1>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-photo reveal">
+                <div class="photo-frame">
+                    <video src="images/mohd-anas-ai-vdo.mp4" autoplay muted loop
+                        style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+                    </video>
+                </div>
+                <div class="photo-detail">
+                    <div>
+                        <div class="photo-detail-name">Mohd Anas</div>
+                        <div class="photo-detail-role">Data Scientist · AI Engineer</div>
+                    </div>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span>Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-content reveal">
+                <p class="intro">"I focus on data problems that feel complex — and make them simple to act on."</p>
+
+                <p>I spend time finding where signal meets noise: identifying which data points truly drive decisions
+                    and which models don't deserve to be deployed. <strong>Statistics helps me ask better questions, but
+                        building helps me test the answers.</strong></p>
+
+                <p>I'm a <strong>Computer Science graduate based in India</strong>, bridging the gap between product
+                    strategy and technical execution in the AI space. I care deeply about systems that ship — not just
+                    code that runs in a Jupyter notebook.</p>
+
+                <p>Currently, I'm going deep on <strong>Agentic AI and Generative AI</strong>, building autonomous
+                    systems that don't just predict outcomes, but actually act on them. This is where I think the next
+                    decade of AI value will be created.</p>
+
+                <p>When I'm not building models, I'm studying how successful AI products actually work — the product
+                    decisions, the data pipelines, the deployment strategies. I'm preparing to contribute at this level
+                    from day one.</p>
+
+                <div class="philosophy-block">
+                    <div class="philosophy-label">Core Philosophy</div>
+                    <div class="philosophy-text">Think → Analyze → Deliver</div>
+                </div>
+
+                <div class="section-label" style="margin-top: 2.5rem;">Currently Diving Into</div>
+                <div class="learning-cards">
+                    <div class="learning-card">
+                        <div class="learning-icon">🤖</div>
+                        <div class="learning-topic">Generative AI</div>
+                        <div class="learning-desc">Building multi-agent systems with Langchain and LLMs that reason,
+                            plan, and execute.</div>
+                    </div>
+                    <div class="learning-card">
+                        <div class="learning-icon">🔗</div>
+                        <div class="learning-topic">Langchain</div>
+                        <div class="learning-desc">Stateful workflows for complex AI pipelines with human-in-the-loop.
+                        </div>
+                    </div>
+                    <div class="learning-card">
+                        <div class="learning-icon">⚡</div>
+                        <div class="learning-topic">ML Ops</div>
+                        <div class="learning-desc">Production-ready model serving, monitoring, and continuous
+                            improvement.</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div class="reveal">
-                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
-                    I focus on data problems that feel complex, making them <span class="text-zinc-400">simple.</span>
-                </h1>
-            </div>
-
-            <div class="space-y-8 text-lg text-zinc-500 font-medium leading-relaxed reveal">
-                <p>
-                    I spend time understanding where the signal meets the noise—identifying which data points truly drive decisions and which models don't deserve to be deployed.
-                </p>
-                <p>
-                    Statistics helps me ask better questions, but building helps me test the answers. I am a <strong>Computer Science graduate based in India</strong>, bridging the gap between product strategy and technical execution in the AI space.
-                </p>
-                <p>
-                    Currently, I am diving deep into <strong>Agentic AI</strong> and <strong>LangGraph</strong>, building autonomous systems that don't just predict, but act.
-                </p>
-                
-                <div class="pt-8 border-t border-black/5">
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Philosophy</h5>
-                    <p class="text-black text-2xl font-bold tracking-tight italic">Think — Analyze — Deliver</p>
+        <!-- Timeline -->
+        <div class="timeline-section reveal">
+            <div class="section-label">Journey</div>
+            <h2 class="timeline-title">How I Got Here</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 · Present</div>
+                    <div class="timeline-role">AI Engineer (Seeking Roles)</div>
+                    <div class="timeline-org">Open to MNCs & Startups</div>
+                    <div class="timeline-desc">Actively building production AI systems and agentic pipelines. Focusing
+                        on LLM-based autonomous agents and ML deployment at scale.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 · 2026</div>
+                    <div class="timeline-role">Self-Directed AI & ML Projects</div>
+                    <div class="timeline-org">Independent Builder</div>
+                    <div class="timeline-desc">Built and deployed a Personal AI Assistant (LangChain + Llama 3) and a
+                        Health care assisstant with LLM which provides personalized medical advice.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 · 2026</div>
+                    <div class="timeline-role">B.Tech. Computer Science</div>
+                    <div class="timeline-org">India</div>
+                    <div class="timeline-desc">Foundations in algorithms, data structures, statistics, and software
+                        engineering. Specialization in machine learning and AI applications.</div>
                 </div>
             </div>
         </div>
     </main>
 
+    <footer>
+        <span class="footer-copy">© 2026 Mohd Anas</span>
+        <a href="projects.html"
+            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">View Projects
+            →</a>
+    </footer>
+
     <script>
-        gsap.from(".reveal", { 
-            y: 40, 
-            opacity: 0, 
-            duration: 1.2, 
-            stagger: 0.2, 
-            ease: "power4.out" 
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: 'top 85%' },
+                y: 0, opacity: 1, duration: 1, ease: 'power3.out'
+            });
         });
+        // First reveal without scroll trigger
+        gsap.to('.page-header', { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', delay: 0.3 });
     </script>
 </body>
+
 </html>

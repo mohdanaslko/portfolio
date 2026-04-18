@@ -7,151 +7,608 @@
     <title>Projects | Mohd Anas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #fcfaf7;
-            --white: #ffffff;
-            --border: rgba(0, 0, 0, 0.08);
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface2: #161616;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --text: #f0ece4;
+            --muted: #6b6b6b;
+            --accent: #c8f247;
+            --accent2: #4fffb0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             background: var(--bg);
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .project-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 48px;
-            /* Extra rounded for that high-end look */
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
         }
 
-        .project-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(0, 0, 0, 0.2);
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.05);
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            opacity: 0.4;
         }
 
-        .tag {
-            font-size: 10px;
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 500;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
             font-weight: 800;
-            letter-spacing: 0.1em;
-            padding: 6px 12px;
-            border-radius: 8px;
-            background: #f4f4f5;
-            color: #71717a;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a.active {
+            color: var(--text);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .nav-cta {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 0.6rem 1.4rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent2);
+        }
+
+        main {
+            padding: 8rem 3rem 5rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .page-header h1 span.hollow {
+            -webkit-text-stroke: 1px rgba(240, 236, 228, 0.2);
+            color: transparent;
+        }
+
+        .page-header p {
+            max-width: 500px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-top: 1.5rem;
+        }
+
+        /* Big project cards */
+        .project {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: border-color 0.4s ease;
+        }
+
+        .project:hover {
+            border-color: var(--border-hover);
+        }
+
+        .project-inner {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 0;
+        }
+
+        .project-inner.reverse {
+            grid-template-columns: 1fr 1.1fr;
+        }
+
+        .project-inner.reverse .project-media {
+            order: 2;
+        }
+
+        .project-inner.reverse .project-info {
+            order: 1;
+        }
+
+        .project-media {
+            background: var(--surface2);
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+        }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 340px;
+        }
+
+        .project:hover .project-media img {
+            transform: scale(1.04);
+        }
+
+        .project-media.edge-fill {
+            padding: 0;
+        }
+
+        .project-media.edge-fill img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-height: none;
+            object-fit: cover;
+        }
+
+        .project-number {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+        }
+
+        .project-info {
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: var(--surface2);
+            padding: 0.3rem 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .project-title {
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            padding: 1.75rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .detail-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .detail-text {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.85rem 1.75rem;
+            border-radius: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent2);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            display: inline-block;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 0.85rem 1.75rem;
+            border-radius: 2rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--border-hover);
+            color: var(--text);
+        }
+
+        /* Coming soon card */
+        .coming-soon {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            transition: border-color 0.4s;
+        }
+
+        .coming-soon:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .cs-spinner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            border-top-color: var(--accent);
+            animation: spin 1.5s linear infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cs-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgba(240, 236, 228, 0.25);
+            margin-bottom: 0.5rem;
+        }
+
+        .cs-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 450px;
+        }
+
+        footer {
+            padding: 2.5rem 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            main {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .project-inner,
+            .project-inner.reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .project-inner.reverse .project-media {
+                order: 1;
+            }
+
+            .project-inner.reverse .project-info {
+                order: 2;
+            }
+
+            .project-media {
+                min-height: 240px;
+            }
+
+            .project-info {
+                padding: 2rem;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav
-        class="fixed top-0 w-full z-50 bg-[#fcfaf7]/80 backdrop-blur-md border-b border-black/5 px-8 py-5 flex justify-between">
-        <div class="font-extrabold text-xl uppercase tracking-tighter"><a href="index.html">MOHD ANAS</a></div>
-        <div class="flex gap-8 text-[11px] font-bold tracking-widest text-zinc-400">
-            <a href="index.html" class="hover:text-black">HOME</a>
-            <a href="about.html" class="hover:text-black">ABOUT</a>
-            <a href="projects.html" class="text-black">PROJECTS</a>
-            <a href="contact.html" class="hover:text-black">CONTACT</a>
+    <nav>
+        <a href="index.html" class="nav-logo">Mohd Anas</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Contact</a>
         </div>
+        <a href="contact.html" class="nav-cta">Hire Me</a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-40 pb-20">
-        <header class="mb-20">
-            <p class="text-[10px] font-black tracking-[0.4em] text-zinc-400 uppercase mb-4">Portfolio</p>
-            <h1 class="text-6xl md:text-8xl font-black tracking-tighter">Selected Works</h1>
-        </header>
+    <main>
+        <div class="page-header reveal">
+            <div class="section-label">Portfolio</div>
+            <h1>SELECTED<br><span class="hollow">WORKS</span></h1>
+            <p>Real projects, deployed and live. Each one built to solve a specific problem — not just to exist in a
+                GitHub repo.</p>
+        </div>
 
-        <div class="grid grid-cols-1 gap-16">
-
-            <div class="project-card p-6 md:p-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-                    <div class="space-y-6">
-                        <div class="aspect-video bg-zinc-100 rounded-[2.5rem] overflow-hidden border border-black/5">
-                            <img src="images/anix.png" alt="AI Bot"
-                                class="w-full h-full object-contain bg-gradient-to-br from-blue-500/10 to-transparent">
+        <!-- Project 01 -->
+        <div class="project reveal">
+            <div class="project-inner">
+                <div class="project-media edge-fill">
+                    <div class="project-number">01 / 02</div>
+                    <img src="images/anix_chatbot_cover.svg" alt="Personal AI Assistant">
+                    </img>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">LangChain</span>
+                            <span class="project-tag">GEMINI 2.5 FLASH</span>
+                            <span class="project-tag">FASTAPI</span>
                         </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Python</span>
-                            <span class="tag">LangChain</span>
-                            <span class="tag">Llama 3</span>
-                            <span class="tag">Streamlit</span>
-                        </div>
-                    </div>
+                        <h2 class="project-title">Gem AI | Contextual API Engine</h2>
+                        <p class="project-desc">A high-performance, context-aware AI assistant designed for seamless full-stack integration. Built to function as a production-ready API, it moves beyond simple prompting by utilizing FastAPI and LangChain’s LCEL to manage sophisticated, session-based memory.</p>
 
-                    <div class="flex flex-col h-full justify-between">
-                        <div>
-                            <h2 class="text-4xl font-black tracking-tight mb-6">Personal AI Assistant</h2>
-
-                            <div class="space-y-6 text-zinc-500 leading-relaxed font-medium">
-                                <p>
-                                    A sophisticated conversational agent built to bridge the gap between open-source
-                                    LLMs and daily productivity. This bot isn't just a wrapper; it's a personalized
-                                    environment for technical reasoning.
-                                </p>
-
-                                <div class="grid grid-cols-2 gap-8 pt-4">
-                                    <div>
-                                        <h4 class="text-black text-xs font-bold uppercase tracking-widest mb-2">Core AI
-                                        </h4>
-                                        <p class="text-sm">Orchestrated with LangChain for memory and Llama-3 for deep
-                                            linguistic reasoning.</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-black text-xs font-bold uppercase tracking-widest mb-2">
-                                            Deployment</h4>
-                                        <p class="text-sm">A minimalist Streamlit frontend providing zero-latency
-                                            streaming responses.</p>
-                                    </div>
-                                </div>
+                        <div class="project-details">
+                            <div>
+                                <div class="detail-label">Core AI</div>
+                                <div class="detail-text">LangChain (RunnableWithMessageHistory) orchestration paired with Gemini 2.5 Flash to maintain user identity and complex context across persistent sessions.</div>
+                            </div>
+                            <div>
+                                <div class="detail-label">Deployment</div>
+                                <div class="detail-text">Architected as a scalable backend engine on Render, featuring dedicated health-check synchronization to ensure zero-latency availability for client-side applications.</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://aeon-ai.onrender.com/" target="_blank" class="btn-primary">Live Demo
+                            ↗</a>
+                        <!-- <a href="#" class="btn-ghost">Source Code</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="pt-10 flex gap-4">
-                            <a href="https://mypersonalai.streamlit.app/" target="_blank"
-                                class="px-8 py-4 bg-black text-white rounded-full font-bold text-[11px] tracking-widest hover:bg-zinc-800 transition shadow-lg shadow-black/10">
-                                VIEW LIVE DEMO
-                            </a>
+        <!-- Project 02 -->
+        <div class="project reveal">
+            <div class="project-inner reverse">
+                <div class="project-media edge-fill">
+                    <div class="project-number">02 / 02</div>
+                    <img src="images/medimindai_cover_final.svg" alt="MediMindAI Medical RAG System">
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">LangChain</span>
+                            <span class="project-tag">Gemini Embeddings</span>
+                            <span class="project-tag">ChromaDB</span>
+                        </div>
+                        <h2 class="project-title">MediMindAI | Medical RAG System</h2>
+                        <p class="project-desc">A specialized Medical Retrieval-Augmented Generation (RAG) system that
+                            provides grounded answers to health queries. Responses are retrieved directly from trusted
+                            medical datasets — dramatically reducing AI hallucinations and improving clinical accuracy.
+                        </p>
+
+                        <div class="project-details">
+                            <div>
+                                <div class="detail-label">Core AI</div>
+                                <div class="detail-text">Gemini Embeddings for semantic search + ChromaDB vector storage
+                                    for precision retrieval from medical corpora.</div>
+                            </div>
+                            <div>
+                                <div class="detail-label">Architecture</div>
+                                <div class="detail-text">Full RAG pipeline built with LangChain — grounded,
+                                    hallucination-resistant, and domain-specialized.</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="project-card p-6 md:p-12 group">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div
-                        class="aspect-video bg-zinc-50 rounded-[2.5rem] border border-dashed border-zinc-300 flex items-center justify-center">
-                        <span class="text-zinc-400 font-bold uppercase tracking-widest text-xs">New Project
-                            Loading...</span>
-                    </div>
-                    <div>
-                        <h2 class="text-4xl font-black tracking-tight mb-4 text-zinc-300">Predictive Analytics</h2>
-                        <p class="text-zinc-400 font-medium">Coming soon: End-to-end Machine Learning pipeline for
-                            real-world data insights.</p>
+                    <div class="project-actions">
+                        <a href="https://medimindai-3qaa.onrender.com/" target="_blank" class="btn-primary">View Project
+                            ↗</a>
+                        <!-- <a href="#" class="btn-ghost">Source Code</a> -->
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- Coming Soon -->
+        <div class="coming-soon reveal">
+            <div class="cs-spinner"></div>
+            <div>
+                <h3 class="cs-title">Next Project In Development</h3>
+                <p class="cs-desc">Working on a new agentic AI pipeline focused on advanced predictive analytics and
+                    autonomous decision-making. Check back soon or reach out to discuss.</p>
+            </div>
         </div>
     </main>
 
-    <footer class="py-20 text-center border-t border-black/5">
-        <p class="text-[10px] font-bold tracking-[0.4em] text-zinc-300 uppercase">© 2026 Mohd Anas — Data Scientist</p>
+    <footer>
+        <span class="footer-copy">© 2026 Mohd Anas</span>
+        <a href="contact.html"
+            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Start a Project
+            →</a>
     </footer>
 
     <script>
-        gsap.from(".project-card", {
-            y: 50,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.3,
-            ease: "power4.out"
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach((el, i) => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: 'top 105%' },
+                y: 0, opacity: 1, duration: 1, delay: i * 0.05, ease: 'power3.out'
+            });
         });
     </script>
 </body>

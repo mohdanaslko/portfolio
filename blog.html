@@ -1,58 +1,143 @@
-<div class="container" style="max-width: 800px;">
-    <h1 style="font-size: 80px;">Writing</h1>
-    <p style="color: var(--text-dim); margin-bottom: 60px; font-size: 18px;">Thoughts on design, product thinking, and coding.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing | Mohd Anas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --surface: #111111; --surface2: #161616;
+            --border: rgba(255,255,255,0.07); --border-hover: rgba(255,255,255,0.15);
+            --text: #f0ece4; --muted: #6b6b6b; --accent: #c8f247; --accent2: #4fffb0;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); opacity:0.4; }
 
-    <div class="blog-list">
-        <div style="padding: 40px 0; border-bottom: 1px solid var(--border); cursor: pointer;">
-            <span style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Dec 2025 • 5 min read</span>
-            <h2 style="font-size: 28px; margin-top: 10px;">Why I built my own design system</h2>
+        nav { position: fixed; top: 0; width: 100%; z-index: 500; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); }
+        .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--text); position: relative; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: var(--accent); }
+        .nav-cta { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 0.6rem 1.4rem; border-radius: 2rem; text-decoration: none; transition: all 0.25s; }
+
+        main { max-width: 900px; margin: 0 auto; padding: 8rem 3rem 5rem; }
+
+        .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+
+        .page-header { margin-bottom: 4rem; }
+        .page-header h1 { font-size: clamp(3.5rem, 7vw, 7rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }
+        .page-header p { color: var(--muted); font-size: 1rem; margin-top: 1.25rem; line-height: 1.7; }
+
+        .post-list { }
+        .post-item { display: block; padding: 2.5rem 0; border-bottom: 1px solid var(--border); cursor: pointer; text-decoration: none; color: inherit; transition: all 0.25s; }
+        .post-item:first-child { border-top: 1px solid var(--border); }
+        .post-item:hover .post-title { color: var(--accent); }
+        .post-item:hover .post-arrow { transform: translate(4px, -4px); color: var(--accent); }
+        .post-meta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; display: flex; gap: 1rem; align-items: center; }
+        .post-meta-dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+        .post-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+        .post-title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; transition: color 0.25s; }
+        .post-arrow { font-size: 1.1rem; color: var(--muted); transition: all 0.25s; flex-shrink: 0; margin-top: 0.25rem; }
+        .post-excerpt { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-top: 0.75rem; max-width: 600px; }
+        .post-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 0.4rem; margin-top: 1rem; }
+
+        footer { padding: 2.5rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-copy { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.25rem 1.5rem; }
+            .nav-links, .nav-cta { display: none; }
+            main { padding: 7rem 1.5rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">Mohd Anas</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div style="padding: 40px 0; border-bottom: 1px solid var(--border); cursor: pointer;">
-            <span style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Nov 2025 • 8 min read</span>
-            <h2 style="font-size: 28px; margin-top: 10px;">Product thinking for developers</h2>
+        <a href="contact.html" class="nav-cta">Hire Me</a>
+    </nav>
+
+    <main>
+        <div class="page-header reveal">
+            <div class="section-label">Writing</div>
+            <h1>THOUGHTS</h1>
+            <p>Essays on AI, data science, and building things that matter. Thinking out loud about what I'm learning.</p>
         </div>
-    </div>
-</div>
-<script>
-    // 1. SELECT ELEMENTS
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const bodyElement = document.body;
 
-    // 2. APPLY SAVED THEME ON LOAD
-    // This checks 'localStorage' to see if you previously picked 'dark'
-    const currentSavedTheme = localStorage.getItem('portfolio-theme') || 'light';
-    bodyElement.setAttribute('data-theme', currentSavedTheme);
+        <div class="post-list reveal">
+            <a href="#" class="post-item">
+                <div class="post-meta">
+                    <span>Dec 2025</span>
+                    <span class="post-meta-dot"></span>
+                    <span>5 min read</span>
+                </div>
+                <div class="post-header">
+                    <h2 class="post-title">Why Agentic AI is the Biggest Shift Since Deep Learning</h2>
+                    <span class="post-arrow">↗</span>
+                </div>
+                <p class="post-excerpt">We've been building models that predict. Now we're building systems that act. Here's why this changes everything about how we think about AI products.</p>
+                <span class="post-tag">AI</span>
+            </a>
 
-    // Update button text to reflect the state
-    if (themeToggleBtn) {
-        themeToggleBtn.innerText = currentSavedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-    }
+            <a href="#" class="post-item">
+                <div class="post-meta">
+                    <span>Nov 2025</span>
+                    <span class="post-meta-dot"></span>
+                    <span>8 min read</span>
+                </div>
+                <div class="post-header">
+                    <h2 class="post-title">Product Thinking for Data Scientists</h2>
+                    <span class="post-arrow">↗</span>
+                </div>
+                <p class="post-excerpt">The best data scientists I've studied don't just build accurate models — they understand why the model matters. Here's how to develop that instinct.</p>
+                <span class="post-tag">Career</span>
+            </a>
 
-    // 3. TOGGLE CLICK LISTENER
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const isLight = bodyElement.getAttribute('data-theme') === 'light';
-            const newTheme = isLight ? 'dark' : 'light';
+            <a href="#" class="post-item">
+                <div class="post-meta">
+                    <span>Oct 2025</span>
+                    <span class="post-meta-dot"></span>
+                    <span>6 min read</span>
+                </div>
+                <div class="post-header">
+                    <h2 class="post-title">LangChain vs Raw APIs: What I Learned Building a Real Chatbot</h2>
+                    <span class="post-arrow">↗</span>
+                </div>
+                <p class="post-excerpt">After building my Personal AI Assistant, I had strong opinions about when abstractions help and when they get in the way. Here's the honest breakdown.</p>
+                <span class="post-tag">Engineering</span>
+            </a>
+        </div>
+    </main>
 
-            // Update the UI
-            bodyElement.setAttribute('data-theme', newTheme);
-            themeToggleBtn.innerText = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    <footer>
+        <span class="footer-copy">© 2026 Mohd Anas</span>
+        <a href="index.html" style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">← Home</a>
+    </footer>
 
-            // Save the choice to the browser's memory
-            localStorage.setItem('portfolio-theme', newTheme);
-
-            // Optional: GSAP Fade effect for smooth transition
-            gsap.fromTo(bodyElement, { opacity: 0.5 }, { opacity: 1, duration: 0.5 });
+    <script>
+        gsap.utils.toArray('.reveal').forEach((el, i) => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: 'top 88%' },
+                y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: i === 0 ? 0.3 : 0
+            });
         });
-    }
-
-    // 4. PAGE ENTRANCE ANIMATION (GSAP)
-    // This makes every page fade in slightly when it loads, matching his site's feel.
-    gsap.from("main, .container", {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        delay: 0.2,
-        ease: "power2.out"
-    });
-</script>
+    </script>
+</body>
+</html>

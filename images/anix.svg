@@ -1,0 +1,156 @@
+<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" width="960" height="540" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg_c" cx="38%" cy="52%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1a0a"/>
+      <stop offset="100%" style="stop-color:#080a08"/>
+    </radialGradient>
+    <radialGradient id="lime_g" cx="38%" cy="52%" r="45%">
+      <stop offset="0%" style="stop-color:#c8f247;stop-opacity:0.14"/>
+      <stop offset="100%" style="stop-color:#c8f247;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="teal_g" cx="72%" cy="28%" r="40%">
+      <stop offset="0%" style="stop-color:#4fffb0;stop-opacity:0.09"/>
+      <stop offset="100%" style="stop-color:#4fffb0;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="gsm">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="gmd">
+      <feGaussianBlur stdDeviation="11" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glg">
+      <feGaussianBlur stdDeviation="24" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bbg"><feGaussianBlur stdDeviation="38"/></filter>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#bg_c)"/>
+  <rect width="960" height="540" fill="url(#lime_g)"/>
+  <rect width="960" height="540" fill="url(#teal_g)"/>
+
+  <!-- grid -->
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+    <line x1="0" y1="90" x2="960" y2="90"/><line x1="0" y1="180" x2="960" y2="180"/>
+    <line x1="0" y1="270" x2="960" y2="270"/><line x1="0" y1="360" x2="960" y2="360"/>
+    <line x1="0" y1="450" x2="960" y2="450"/>
+    <line x1="120" y1="0" x2="120" y2="540"/><line x1="240" y1="0" x2="240" y2="540"/>
+    <line x1="360" y1="0" x2="360" y2="540"/><line x1="480" y1="0" x2="480" y2="540"/>
+    <line x1="600" y1="0" x2="600" y2="540"/><line x1="720" y1="0" x2="720" y2="540"/>
+    <line x1="840" y1="0" x2="840" y2="540"/>
+  </g>
+
+  <!-- ambient glow -->
+  <circle cx="310" cy="270" r="200" fill="#c8f247" opacity="0.04" filter="url(#bbg)"/>
+
+  <!-- ===== NEURAL NETWORK (left 2/3) ===== -->
+  <!-- all connections -->
+  <g stroke="rgba(200,242,71,0.1)" stroke-width="1.2">
+    <line x1="120" y1="155" x2="350" y2="130"/><line x1="120" y1="155" x2="350" y2="255"/>
+    <line x1="120" y1="155" x2="350" y2="380"/><line x1="120" y1="270" x2="350" y2="130"/>
+    <line x1="120" y1="270" x2="350" y2="255"/><line x1="120" y1="270" x2="350" y2="380"/>
+    <line x1="120" y1="390" x2="350" y2="130"/><line x1="120" y1="390" x2="350" y2="255"/>
+    <line x1="120" y1="390" x2="350" y2="380"/>
+  </g>
+  <g stroke="rgba(79,255,176,0.1)" stroke-width="1.2">
+    <line x1="350" y1="130" x2="570" y2="190"/><line x1="350" y1="130" x2="570" y2="340"/>
+    <line x1="350" y1="255" x2="570" y2="190"/><line x1="350" y1="255" x2="570" y2="340"/>
+    <line x1="350" y1="380" x2="570" y2="190"/><line x1="350" y1="380" x2="570" y2="340"/>
+  </g>
+
+  <!-- active signal paths -->
+  <line x1="120" y1="270" x2="350" y2="255" stroke="#c8f247" stroke-width="2.2" opacity="0.75" filter="url(#gsm)"/>
+  <line x1="350" y1="255" x2="570" y2="190" stroke="#4fffb0" stroke-width="2.2" opacity="0.75" filter="url(#gsm)"/>
+  <line x1="120" y1="155" x2="350" y2="130" stroke="#c8f247" stroke-width="1.5" opacity="0.38"/>
+  <line x1="350" y1="380" x2="570" y2="340" stroke="#4fffb0" stroke-width="1.5" opacity="0.32"/>
+
+  <!-- input nodes -->
+  <circle cx="120" cy="155" r="28" fill="#c8f247" opacity="0.05" filter="url(#glg)"/>
+  <circle cx="120" cy="270" r="44" fill="#c8f247" opacity="0.13" filter="url(#glg)"/>
+  <circle cx="120" cy="390" r="28" fill="#c8f247" opacity="0.05" filter="url(#glg)"/>
+  <circle cx="120" cy="155" r="11" fill="#0d1a0a" stroke="#c8f247" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="120" cy="270" r="15" fill="#c8f247" opacity="1" filter="url(#gmd)"/>
+  <circle cx="120" cy="270" r="6" fill="white" opacity="0.9"/>
+  <circle cx="120" cy="270" r="28" fill="none" stroke="#c8f247" stroke-width="1" opacity="0.18" stroke-dasharray="4 7"/>
+  <circle cx="120" cy="390" r="11" fill="#0d1a0a" stroke="#c8f247" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- hidden nodes -->
+  <circle cx="350" cy="130" r="12" fill="#0d1a0a" stroke="rgba(200,242,71,0.38)" stroke-width="1.5"/>
+  <circle cx="350" cy="255" r="17" fill="#c8f247" opacity="0.95" filter="url(#gmd)"/>
+  <circle cx="350" cy="255" r="7" fill="white" opacity="0.9"/>
+  <circle cx="350" cy="255" r="30" fill="none" stroke="#c8f247" stroke-width="1" opacity="0.16" stroke-dasharray="3 8"/>
+  <circle cx="350" cy="380" r="14" fill="#4fffb0" opacity="0.72" filter="url(#gsm)"/>
+  <circle cx="350" cy="380" r="5" fill="white" opacity="0.7"/>
+
+  <!-- output nodes -->
+  <circle cx="570" cy="190" r="19" fill="#4fffb0" opacity="0.9" filter="url(#gmd)"/>
+  <circle cx="570" cy="190" r="8" fill="white" opacity="0.9"/>
+  <circle cx="570" cy="190" r="34" fill="none" stroke="#4fffb0" stroke-width="1" opacity="0.18" stroke-dasharray="4 9"/>
+  <circle cx="570" cy="340" r="12" fill="#0d1a0a" stroke="rgba(79,255,176,0.38)" stroke-width="1.5"/>
+
+  <!-- ===== CHAT UI (right side) ===== -->
+  <rect x="630" y="80" width="290" height="370" rx="18" fill="rgba(8,10,8,0.72)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+  <!-- user msg -->
+  <rect x="652" y="102" width="240" height="44" rx="11" fill="#141414" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+  <circle cx="669" cy="124" r="8" fill="#c8f247" opacity="0.9"/>
+  <circle cx="669" cy="124" r="3" fill="#080a08"/>
+  <rect x="683" y="117" width="110" height="6" rx="3" fill="rgba(240,236,228,0.2)"/>
+  <rect x="683" y="129" width="76" height="5" rx="2.5" fill="rgba(240,236,228,0.1)"/>
+
+  <!-- ai response -->
+  <rect x="652" y="156" width="256" height="62" rx="11" fill="#101a0c" stroke="rgba(200,242,71,0.2)" stroke-width="1" filter="url(#gsm)"/>
+  <circle cx="669" cy="182" r="8" fill="#c8f247" opacity="1"/>
+  <circle cx="669" cy="182" r="2" fill="white"/>
+  <rect x="683" y="170" width="155" height="6" rx="3" fill="rgba(200,242,71,0.42)"/>
+  <rect x="683" y="182" width="125" height="5" rx="2.5" fill="rgba(200,242,71,0.26)"/>
+  <rect x="683" y="193" width="95" height="5" rx="2.5" fill="rgba(200,242,71,0.14)"/>
+
+  <!-- user msg 2 -->
+  <rect x="652" y="230" width="200" height="40" rx="11" fill="#141414" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+  <rect x="668" y="243" width="100" height="6" rx="3" fill="rgba(240,236,228,0.15)"/>
+  <rect x="668" y="255" width="70" height="5" rx="2.5" fill="rgba(240,236,228,0.08)"/>
+
+  <!-- typing dots -->
+  <rect x="652" y="282" width="84" height="30" rx="9" fill="#101a0c" stroke="rgba(200,242,71,0.14)" stroke-width="1"/>
+  <circle cx="671" cy="297" r="4" fill="#c8f247" opacity="0.9"/>
+  <circle cx="686" cy="297" r="4" fill="#c8f247" opacity="0.55"/>
+  <circle cx="701" cy="297" r="4" fill="#c8f247" opacity="0.25"/>
+
+  <!-- memory badge -->
+  <rect x="652" y="326" width="130" height="26" rx="8" fill="rgba(200,242,71,0.07)" stroke="rgba(200,242,71,0.18)" stroke-width="1"/>
+  <text x="717" y="343" text-anchor="middle" font-family="monospace" font-size="9.5" fill="rgba(200,242,71,0.55)" letter-spacing="1.5">MEMORY ON</text>
+
+  <!-- context badge -->
+  <rect x="795" y="326" width="112" height="26" rx="8" fill="rgba(79,255,176,0.06)" stroke="rgba(79,255,176,0.16)" stroke-width="1"/>
+  <text x="851" y="343" text-anchor="middle" font-family="monospace" font-size="9.5" fill="rgba(79,255,176,0.5)" letter-spacing="1">4096 TOKENS</text>
+
+  <!-- ===== TAGS top-left ===== -->
+  <rect x="50" y="42" width="110" height="24" rx="6" fill="rgba(200,242,71,0.08)" stroke="rgba(200,242,71,0.26)" stroke-width="1"/>
+  <text x="105" y="59" text-anchor="middle" font-family="monospace" font-size="10" fill="#c8f247" letter-spacing="1.5">LANGCHAIN</text>
+  <rect x="172" y="42" width="78" height="24" rx="6" fill="rgba(79,255,176,0.07)" stroke="rgba(79,255,176,0.2)" stroke-width="1"/>
+  <text x="211" y="59" text-anchor="middle" font-family="monospace" font-size="10" fill="#4fffb0" letter-spacing="1.5">LLAMA 3</text>
+
+  <!-- floating tokens -->
+  <text x="420" y="460" font-family="monospace" font-size="11" fill="rgba(200,242,71,0.32)" letter-spacing="1">context.load()</text>
+  <text x="420" y="480" font-family="monospace" font-size="10" fill="rgba(79,255,176,0.25)" letter-spacing="1">stream.generate()</text>
+
+  <!-- ghost text -->
+  <text x="50" y="520" font-family="'Arial Black',sans-serif" font-weight="900" font-size="80" fill="rgba(200,242,71,0.028)" letter-spacing="-3">ANIX</text>
+
+  <!-- bottom bar -->
+  <line x1="0" y1="516" x2="960" y2="516" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <text x="50" y="532" font-family="monospace" font-size="9.5" fill="rgba(255,255,255,0.18)" letter-spacing="2">PERSONAL AI ASSISTANT</text>
+  <text x="910" y="532" text-anchor="end" font-family="monospace" font-size="9.5" fill="rgba(200,242,71,0.42)" letter-spacing="2">LIVE ↗</text>
+
+  <!-- corners -->
+  <path d="M896,30 L926,30 L926,58" stroke="rgba(200,242,71,0.32)" stroke-width="1.5" fill="none"/>
+  <path d="M64,510 L34,510 L34,482" stroke="rgba(200,242,71,0.32)" stroke-width="1.5" fill="none"/>
+
+  <!-- vertical label -->
+  <g transform="translate(20,370) rotate(-90)">
+    <text font-family="monospace" font-size="8.5" fill="rgba(255,255,255,0.09)" letter-spacing="3">CONVERSATIONAL AGENT · 2026</text>
+  </g>
+</svg>

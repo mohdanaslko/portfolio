@@ -5,40 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Mohd Anas</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #fcfaf7; --white: #ffffff; --border: rgba(0,0,0,0.08); }
-        body { background: var(--bg); font-family: 'Inter', sans-serif; }
-        .input-field { background: var(--white); border: 1px solid var(--border); padding: 1.25rem; border-radius: 1rem; width: 100%; outline: none; }
-        .input-field:focus { border-color: black; }
+        :root {
+            --bg: #0a0a0a; --surface: #111111; --surface2: #161616;
+            --border: rgba(255,255,255,0.07); --border-hover: rgba(255,255,255,0.15);
+            --text: #f0ece4; --muted: #6b6b6b; --accent: #c8f247; --accent2: #4fffb0;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); opacity:0.4; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 500; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); }
+        .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--text); position: relative; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: var(--accent); }
+        .nav-cta { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 0.6rem 1.4rem; border-radius: 2rem; text-decoration: none; transition: all 0.25s; }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 8rem 3rem 5rem; }
+
+        .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+
+        /* Hero contact banner */
+        .contact-hero { margin-bottom: 5rem; }
+        .contact-hero h1 { font-size: clamp(3.5rem, 7vw, 7.5rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .contact-hero h1 span.hollow { -webkit-text-stroke: 1px rgba(240,236,228,0.2); color: transparent; }
+        .contact-hero h1 span.accent { color: var(--accent); }
+        .contact-hero p { max-width: 550px; color: var(--muted); font-size: 1.1rem; line-height: 1.7; }
+
+        /* Contact grid */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+        
+        .contact-sidebar { }
+        .contact-item { padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
+        .contact-item:first-child { padding-top: 0; }
+        .contact-item-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+        .contact-item-value { font-size: 1rem; font-weight: 500; color: var(--text); }
+        .contact-item-value a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .contact-item-value a:hover { color: var(--accent); }
+
+        .social-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+        .social-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.875rem; text-decoration: none; color: var(--text); transition: all 0.25s; }
+        .social-link:hover { border-color: var(--border-hover); transform: translateX(4px); }
+        .social-link-name { font-size: 0.85rem; font-weight: 600; }
+        .social-link-handle { font-size: 0.75rem; color: var(--muted); }
+        .social-link-arrow { font-size: 0.9rem; color: var(--muted); transition: color 0.2s; }
+        .social-link:hover .social-link-arrow { color: var(--accent); }
+
+        /* Form */
+        .contact-form-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 1.75rem; padding: 3rem; }
+        .form-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .form-subtitle { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        input, select, textarea {
+            width: 100%; background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 0.875rem;
+            padding: 1rem 1.2rem;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.25s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: rgba(200,242,71,0.5); }
+        input::placeholder, textarea::placeholder { color: var(--muted); }
+        select option { background: #111; }
+        textarea { resize: none; }
+
+        .btn-submit {
+            width: 100%; background: var(--accent); color: var(--bg);
+            border: none; border-radius: 0.875rem;
+            padding: 1.2rem; font-family: 'Syne', sans-serif;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.25em;
+            text-transform: uppercase; cursor: pointer;
+            transition: all 0.25s; margin-top: 0.5rem;
+        }
+        .btn-submit:hover { background: var(--accent2); transform: translateY(-2px); }
+
+        /* Quick contact strip */
+        .quick-strip { display: flex; gap: 1rem; margin-top: 5rem; }
+        .quick-item { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.75rem; transition: border-color 0.25s; }
+        .quick-item:hover { border-color: var(--border-hover); }
+        .quick-icon { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .quick-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+        .quick-text { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+        footer { padding: 2.5rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-copy { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1.25rem 1.5rem; }
+            .nav-links, .nav-cta { display: none; }
+            main { padding: 7rem 1.5rem 4rem; }
+            .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .quick-strip { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
-    <nav class="fixed top-0 w-full z-50 bg-[#fcfaf7]/80 backdrop-blur-md border-b border-black/5 px-8 py-5 flex justify-between">
-        <div class="font-extrabold text-xl uppercase tracking-tighter"><a href="index.html">Mohd Anas</a></div>
-        <div class="flex gap-8 text-[11px] font-bold tracking-widest text-zinc-400">
-            <a href="index.html">HOME</a>
-            <a href="contact.html" class="text-black">CONTACT</a>
+    <nav>
+        <a href="index.html" class="nav-logo">Mohd Anas</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html" class="active">Contact</a>
         </div>
+        <a href="contact.html" class="nav-cta">Hire Me</a>
     </nav>
 
-    <div class="max-w-2xl mx-auto px-6 pt-40 pb-20">
-        <h1 class="text-5xl font-black tracking-tighter mb-4">Let's solve a real problem.</h1>
-        <p class="text-zinc-500 mb-12">I usually reply within 24–48 hours.</p>
+    <main>
+        <div class="contact-hero reveal">
+            <div class="section-label">Let's Talk</div>
+            <h1>HIRE ME,<br><span class="hollow">BUILD</span><br><span class="accent">SOMETHING.</span></h1>
+            <p>I'm actively looking for AI Engineer and Data Science roles at MNCs and high-growth startups. Open to full-time, remote, or hybrid. I reply within 24–48 hours.</p>
+        </div>
 
-        <form action="https://formspree.io/f/xdaaokar" method="POST" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" name="name" placeholder="Your Name" class="input-field">
-                <input type="email" name="email" placeholder="Email Address" class="input-field">
+        <div class="contact-layout">
+            <div class="contact-sidebar reveal">
+                <div class="contact-item">
+                    <div class="contact-item-label">Email</div>
+                    <div class="contact-item-value"><a href="mailto:mohdanaslko7@gmail.com">mohdanaslko7@gmail.com</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">Location</div>
+                    <div class="contact-item-value">India — Open to Remote & Relocation</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">Availability</div>
+                    <div class="contact-item-value" style="color: var(--accent2); display:flex; align-items:center; gap:0.5rem;">
+                        <span style="width:7px;height:7px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite;display:inline-block;"></span>
+                        Actively Seeking Roles · 2026
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">Response Time</div>
+                    <div class="contact-item-value">24–48 hours</div>
+                </div>
+
+                <div class="social-list">
+                    <a href="https://www.linkedin.com/in/mohd-anas-0b09b92a7/" class="social-link">
+                        <div><div class="social-link-name">LinkedIn</div><div class="social-link-handle">@mohd-anas</div></div>
+                        <span class="social-link-arrow">↗</span>
+                    </a>
+                    <a href="https://github.com/mohdanaslko" class="social-link">
+                        <div><div class="social-link-name">GitHub</div><div class="social-link-handle">@mohd-anas</div></div>
+                        <span class="social-link-arrow">↗</span>
+                    </a>
+                </div>
             </div>
-            <select name="subject" class="input-field appearance-none">
-                <option disabled selected>Message type (optional)</option>
-                <option>Internship / Role</option>
-                <option>Project / Freelance</option>
-                <option>Collaboration</option>
-            </select>
-            <textarea name="message" placeholder="Message" rows="6" class="input-field"></textarea>
-            <button class="w-full bg-black text-white py-5 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-zinc-800 transition">Send Message</button>
-        </form>
-    </div>
+
+            <div class="contact-form-wrap reveal">
+                <h2 class="form-title">Send a Message</h2>
+                <p class="form-subtitle">Whether it's a full-time role, collaboration, or a project — I'm listening.</p>
+                <form action="https://formspree.io/f/myklwpek" method="POST">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="company" placeholder="Company / Organization (optional)">
+                    </div>
+                    <div class="form-group">
+                        <select name="subject">
+                            <option value="" disabled selected>What's this about?</option>
+                            <option>Full-time Role</option>
+                            <option>Internship</option>
+                            <option>Project / Freelance</option>
+                            <option>Collaboration</option>
+                            <option>Just saying hi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tell me about the opportunity, the team, or the problem you're solving..." rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="quick-strip reveal">
+            <div class="quick-item">
+                <div class="quick-icon">🎯</div>
+                <div class="quick-title">What I'm Looking For</div>
+                <div class="quick-text">AI Engineer or Data Scientist roles. Teams shipping real AI products. Companies that value clean code and clear thinking.</div>
+            </div>
+            <div class="quick-item">
+                <div class="quick-icon">⚡</div>
+                <div class="quick-title">What I Bring</div>
+                <div class="quick-text">End-to-end ML ownership — from problem framing to model deployment. Experience with LLMs, LangChain, and Streamlit in production.</div>
+            </div>
+            <div class="quick-item">
+                <div class="quick-icon">🌍</div>
+                <div class="quick-title">Work Style</div>
+                <div class="quick-text">Remote-first, async-friendly. Fast learner who ships. I work best in environments that value ownership over micromanagement.</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-copy">© 2026 Mohd Anas</span>
+        <a href="index.html" style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">← Back to Home</a>
+    </footer>
+
+    <style>@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }</style>
+    <script>
+        gsap.utils.toArray('.reveal').forEach((el, i) => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: 'top 88%' },
+                y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: i === 0 ? 0.3 : 0
+            });
+        });
+    </script>
 </body>
 </html>

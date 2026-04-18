@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohd Anas | Data Scientist & AI Engineer</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #fcfaf7;
+            --bg-white: #ffffff;
+            --text-black: #1a1a1a;
+            --text-zinc: #71717a;
+            --border-muted: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-black);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 1. Header Styling */
+        .glass-nav {
+            background: rgba(252, 250, 247, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-muted);
+        }
+
+        /* 2. Marquee Animation */
+        .marquee {
+            display: flex;
+            overflow: hidden;
+            border-top: 1px solid var(--border-muted);
+            border-bottom: 1px solid var(--border-muted);
+            padding: 3rem 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-content span {
+            font-size: 80px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            padding: 0 40px;
+            opacity: 0.05;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* 3. Card & Form Effects */
+        .project-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-muted);
+            border-radius: 40px;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+        }
+
+        .contact-input {
+            background: var(--bg-white);
+            border: 1px solid var(--border-muted);
+            padding: 1.25rem;
+            border-radius: 1rem;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-input:focus {
+            border-color: var(--text-black);
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="font-extrabold text-xl tracking-tighter uppercase">MOHD ANAS</div>
+            <div class="hidden md:flex gap-10 text-[13px] font-bold tracking-widest text-zinc-400">
+                <a href="index.html" class="text-black">HOME</a>
+                <a href="about.html" class="hover:text-black transition">ABOUT</a>
+                <a href="projects.html" class="hover:text-black transition">PROJECTS</a>
+                <a href="contact.html" class="hover:text-black transition">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-zinc-400 font-bold mb-6">Available for Roles</p>
+        <h1 class="text-6xl md:text-[110px] font-black tracking-tighter leading-none mb-12">MOHD ANAS</h1>
+
+        <div class="relative w-56 h-72 md:w-64 md:h-80 mx-auto mb-12">
+            <div class="absolute inset-0 bg-white border border-black/5 rounded-[2.5rem] rotate-[-4deg]"></div>
+            <div
+                class="relative w-full h-full bg-zinc-100 rounded-[2.5rem] overflow-hidden border border-black/5 shadow-2xl">
+                <img src="images/Screenshot 2026-01-11 114027.png" alt="ANAS - Data Scientist"
+                    class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <p class="text-xl md:text-2xl font-light text-zinc-400">
+            Data Scientist — <span class="text-black font-semibold">AI Engineer</span> — CS Graduate
+        </p>
+    </section>
+
+    <div class="marquee mb-24">
+        <div class="marquee-content">
+            <span>DATA SCIENTIST • AI ENGINEER • ML OPS • DATA SCIENTIST • AI ENGINEER • ML OPS • </span>
+        </div>
+    </div>
+
+
+    <section class="max-w-7xl mx-auto px-6 py-20 reveal">
+        <div class="flex justify-between items-end mb-16">
+            <h3 class="text-4xl font-black tracking-tight">SOME OF MY PROJECTS</h3>
+            <a href="projects.html"
+                class="text-xs font-bold text-zinc-400 border-b border-zinc-200 pb-1 hover:text-black transition">VIEW
+                ALL</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="project-card p-4 group cursor-pointer">
+                <div class="aspect-video bg-zinc-50 rounded-[1.8rem] mb-6 overflow-hidden">
+                    <img src="images/anix.png" alt="AI Bot"
+                        class="w-full h-full object-contain bg-gradient-to-br from-blue-500/10 to-transparent">
+                </div>
+                <div class="px-4 pb-4">
+                    <h4 class="text-2xl font-bold"><a href="https://mypersonalai.streamlit.app/">Personal AI Assistant</a></h4>
+                    <p class="text-zinc-500 text-sm mt-2 leading-relaxed">
+                        A conversational agent built with <strong>Llama</strong> and <strong>LangChain</strong> to
+                        provide intelligent, context-aware answers in a custom Streamlit environment.
+                    </p>
+                    <p class="text-zinc-400 text-xs mt-3 font-medium tracking-wide uppercase">Python • Langchain • Llama
+                        3 • Streamlit</p>
+                </div>
+            </div>
+           <!-- <div class="project-card p-4 group cursor-pointer">
+                <div class="aspect-video bg-zinc-50 rounded-[1.8rem] mb-6 overflow-hidden">
+                    <div class="w-full h-full bg-gradient-to-br from-orange-500/10 to-transparent"></div>
+                </div>
+                <div class="px-4 pb-4">
+                    <h4 class="text-2xl font-bold">Portfolio</h4>
+                    <p class="text-zinc-400 text-sm mt-1 font-medium tracking-wide">HTML • CSS • Tailwind</p>
+                </div>
+            </div>-->  
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-32 reveal">
+        <div class="flex justify-between items-end mb-16 border-t border-black/5 pt-20">
+            <h3 class="text-4xl font-black tracking-tight">Technical Expertise</h3>
+            <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Skills & Frameworks</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <h5 class="font-bold text-[10px] uppercase tracking-widest text-zinc-400 mb-8">AI & LLMs</h5>
+                <ul class="space-y-4 font-bold text-lg">
+                    <li>GEN AI</li>
+                    <li>AGENTIC AI</li>
+                    <li>LLAMA</li>
+                    <li>GEMINI</li>
+                    <li>CHATGPT</li>
+                    <li>LANGCHAIN</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="font-bold text-[10px] uppercase tracking-widest text-zinc-400 mb-8">Machine Learning</h5>
+                <ul class="space-y-4 font-bold text-lg">
+                    <li>LINEAR REGRESSION</li>
+                    <li>K-NEAREST NEIGHBOURS</li>
+                    <li>DECISION TREE</li>
+                    <li>RANDOM FOREST</li>
+                    <li>NAIVE BAYES</li>
+                    <li>PCA</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="font-bold text-[10px] uppercase tracking-widest text-zinc-400 mb-8">Analytics Stack</h5>
+                <ul class="space-y-4 font-bold text-lg">
+                    <li>PYTHON</li>
+                    <li>SQL</li>
+                    <li>POWER BI</li>
+                    <li>PANDAS</li>
+                    <li>MATPLOTLIB</li>
+                    <li>SEABORN</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold text-[10px] uppercase tracking-widest text-zinc-400 mb-8">TOOLS</h5>
+                <ul class="space-y-4 font-bold text-lg">
+                    <li>GIT/GITHUB</li>
+                    <li>JUPYTER NOTEBOOK</li>
+                    <li>VSCODE</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-10 rounded-[2.5rem] border border-black/5 shadow-sm">
+                <h5 class="font-bold text-[10px] uppercase tracking-widest text-zinc-400 mb-4">Availability</h5>
+                <p class="font-bold text-xl leading-snug mb-6">Open to Full-time AI Engineer & Data Science roles.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Active in 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-32 reveal">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.9]">Want to discuss <br>a
+                    real problem?</h2>
+                <p class="text-zinc-500 text-lg mb-10 max-w-sm">I usually reply within 24–48 hours. Let's build
+                    something together.</p>
+                <div class="flex flex-col gap-2">
+                    <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Email me directly</span>
+                    <a href="mailto:hello@charan.com"
+                        class="text-2xl font-bold hover:text-zinc-400 transition">mda00400@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-[3rem] border border-black/5">
+                <form action="https://formspree.io/f/xdaaokar" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="name" placeholder="Your Name" class="contact-input">
+                        <input type="email" name="email" placeholder="Email Address" class="contact-input">
+                    </div>
+                    <select name="subject" class="contact-input appearance-none">
+                        <option value="" disabled selected>Message type (optional)</option>
+                        <option>Internship / Role</option>
+                        <option>Project / Freelance</option>
+                        <option>Collaboration</option>
+                    </select>
+                    <textarea name="message" placeholder="Tell me about your project..." rows="5"
+                        class="contact-input"></textarea>
+                    <button type="submit"
+                        class="w-full bg-black text-white py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.3em] hover:bg-zinc-800 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-black/5 text-center">
+        <p class="text-[10px] font-bold tracking-[0.4em] text-zinc-300 uppercase">© 2026 Designed & Built by MOHD ANAS
+        </p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entrance Animation
+        window.addEventListener('load', () => {
+            gsap.from("h1, .hero p, .hero div", {
+                y: 50,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: "power4.out"
+            });
+        });
+
+        // Scroll Reveal Logic
+        gsap.utils.toArray(".reveal").forEach(section => {
+            gsap.to(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+
+</html>

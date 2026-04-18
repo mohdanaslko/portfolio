@@ -1,0 +1,58 @@
+<div class="container" style="max-width: 800px;">
+    <h1 style="font-size: 80px;">Writing</h1>
+    <p style="color: var(--text-dim); margin-bottom: 60px; font-size: 18px;">Thoughts on design, product thinking, and coding.</p>
+
+    <div class="blog-list">
+        <div style="padding: 40px 0; border-bottom: 1px solid var(--border); cursor: pointer;">
+            <span style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Dec 2025 • 5 min read</span>
+            <h2 style="font-size: 28px; margin-top: 10px;">Why I built my own design system</h2>
+        </div>
+        <div style="padding: 40px 0; border-bottom: 1px solid var(--border); cursor: pointer;">
+            <span style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Nov 2025 • 8 min read</span>
+            <h2 style="font-size: 28px; margin-top: 10px;">Product thinking for developers</h2>
+        </div>
+    </div>
+</div>
+<script>
+    // 1. SELECT ELEMENTS
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const bodyElement = document.body;
+
+    // 2. APPLY SAVED THEME ON LOAD
+    // This checks 'localStorage' to see if you previously picked 'dark'
+    const currentSavedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    bodyElement.setAttribute('data-theme', currentSavedTheme);
+
+    // Update button text to reflect the state
+    if (themeToggleBtn) {
+        themeToggleBtn.innerText = currentSavedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+
+    // 3. TOGGLE CLICK LISTENER
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = bodyElement.getAttribute('data-theme') === 'light';
+            const newTheme = isLight ? 'dark' : 'light';
+
+            // Update the UI
+            bodyElement.setAttribute('data-theme', newTheme);
+            themeToggleBtn.innerText = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+
+            // Save the choice to the browser's memory
+            localStorage.setItem('portfolio-theme', newTheme);
+
+            // Optional: GSAP Fade effect for smooth transition
+            gsap.fromTo(bodyElement, { opacity: 0.5 }, { opacity: 1, duration: 0.5 });
+        });
+    }
+
+    // 4. PAGE ENTRANCE ANIMATION (GSAP)
+    // This makes every page fade in slightly when it loads, matching his site's feel.
+    gsap.from("main, .container", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 0.2,
+        ease: "power2.out"
+    });
+</script>

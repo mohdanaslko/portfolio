@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | MOHD ANAS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #fcfaf7; --text: #1a1a1a; --dim: #71717a; --border: rgba(0,0,0,0.08); }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-nav { background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        
+        .banner-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="font-extrabold text-xl tracking-tighter uppercase">
+                <a href="index.html" class="no-underline text-black">MOHD ANAS</a>
+            </div>
+            <div class="flex gap-10 text-[13px] font-bold tracking-widest text-zinc-400">
+                <a href="index.html" class="hover:text-black transition">HOME</a>
+                <a href="about.html" class="text-black">ABOUT</a>
+                <a href="projects.html" class="hover:text-black transition">PROJECTS</a>
+                <a href="contact.html" class="hover:text-black transition">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        
+        <div class="w-full mb-16 reveal">
+            <div class="w-full rounded-[2.5rem] overflow-hidden banner-shadow border border-black/5 bg-zinc-100">
+                <img src="images/Black and White Modern Business LinkedIn Banner.png" 
+                     alt="Mohd Anas Professional Banner" 
+                     class="w-full h-auto object-cover max-h-[400px]">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div class="reveal">
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
+                    I focus on data problems that feel complex, making them <span class="text-zinc-400">simple.</span>
+                </h1>
+            </div>
+
+            <div class="space-y-8 text-lg text-zinc-500 font-medium leading-relaxed reveal">
+                <p>
+                    I spend time understanding where the signal meets the noise—identifying which data points truly drive decisions and which models don't deserve to be deployed.
+                </p>
+                <p>
+                    Statistics helps me ask better questions, but building helps me test the answers. I am a <strong>Computer Science graduate based in India</strong>, bridging the gap between product strategy and technical execution in the AI space.
+                </p>
+                <p>
+                    Currently, I am diving deep into <strong>Agentic AI</strong> and <strong>LangGraph</strong>, building autonomous systems that don't just predict, but act.
+                </p>
+                
+                <div class="pt-8 border-t border-black/5">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Philosophy</h5>
+                    <p class="text-black text-2xl font-bold tracking-tight italic">Think — Analyze — Deliver</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        gsap.from(".reveal", { 
+            y: 40, 
+            opacity: 0, 
+            duration: 1.2, 
+            stagger: 0.2, 
+            ease: "power4.out" 
+        });
+    </script>
+</body>
+</html>

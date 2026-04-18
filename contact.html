@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Mohd Anas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --bg: #fcfaf7; --white: #ffffff; --border: rgba(0,0,0,0.08); }
+        body { background: var(--bg); font-family: 'Inter', sans-serif; }
+        .input-field { background: var(--white); border: 1px solid var(--border); padding: 1.25rem; border-radius: 1rem; width: 100%; outline: none; }
+        .input-field:focus { border-color: black; }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 bg-[#fcfaf7]/80 backdrop-blur-md border-b border-black/5 px-8 py-5 flex justify-between">
+        <div class="font-extrabold text-xl uppercase tracking-tighter"><a href="index.html">Mohd Anas</a></div>
+        <div class="flex gap-8 text-[11px] font-bold tracking-widest text-zinc-400">
+            <a href="index.html">HOME</a>
+            <a href="contact.html" class="text-black">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto px-6 pt-40 pb-20">
+        <h1 class="text-5xl font-black tracking-tighter mb-4">Let's solve a real problem.</h1>
+        <p class="text-zinc-500 mb-12">I usually reply within 24–48 hours.</p>
+
+        <form action="https://formspree.io/f/xdaaokar" method="POST" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" name="name" placeholder="Your Name" class="input-field">
+                <input type="email" name="email" placeholder="Email Address" class="input-field">
+            </div>
+            <select name="subject" class="input-field appearance-none">
+                <option disabled selected>Message type (optional)</option>
+                <option>Internship / Role</option>
+                <option>Project / Freelance</option>
+                <option>Collaboration</option>
+            </select>
+            <textarea name="message" placeholder="Message" rows="6" class="input-field"></textarea>
+            <button class="w-full bg-black text-white py-5 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-zinc-800 transition">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

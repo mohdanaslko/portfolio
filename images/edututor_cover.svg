@@ -1,0 +1,229 @@
+<svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" width="800" height="900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="et_bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#0a0d14"/>
+      <stop offset="100%" style="stop-color:#070809"/>
+    </radialGradient>
+    <radialGradient id="et_blue" cx="45%" cy="45%" r="55%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.11"/>
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="et_lime" cx="70%" cy="25%" r="40%">
+      <stop offset="0%" style="stop-color:#c8f247;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#c8f247;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="et_glow_sm">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="et_glow_md">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="et_glow_lg">
+      <feGaussianBlur stdDeviation="28" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="et_blur_bg">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="900" fill="url(#et_bg)"/>
+  <rect width="800" height="900" fill="url(#et_blue)"/>
+  <rect width="800" height="900" fill="url(#et_lime)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="rgba(255,255,255,0.028)" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="500" x2="800" y2="500"/><line x1="0" y1="600" x2="800" y2="600"/>
+    <line x1="0" y1="700" x2="800" y2="700"/><line x1="0" y1="800" x2="800" y2="800"/>
+    <line x1="100" y1="0" x2="100" y2="900"/><line x1="200" y1="0" x2="200" y2="900"/>
+    <line x1="300" y1="0" x2="300" y2="900"/><line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="500" y1="0" x2="500" y2="900"/><line x1="600" y1="0" x2="600" y2="900"/>
+    <line x1="700" y1="0" x2="700" y2="900"/>
+  </g>
+
+  <!-- Ambient glow -->
+  <circle cx="400" cy="400" r="240" fill="#60a5fa" opacity="0.04" filter="url(#et_blur_bg)"/>
+  <circle cx="600" cy="200" r="160" fill="#c8f247" opacity="0.03" filter="url(#et_blur_bg)"/>
+
+  <!-- ===== OPEN BOOK SHAPE ===== -->
+  <!-- Book left page -->
+  <rect x="120" y="180" width="240" height="320" rx="4" fill="rgba(16,24,40,0.85)" stroke="rgba(96,165,250,0.18)" stroke-width="1.5"/>
+  <!-- Book right page -->
+  <rect x="368" y="180" width="240" height="320" rx="4" fill="rgba(16,24,40,0.85)" stroke="rgba(96,165,250,0.18)" stroke-width="1.5"/>
+  <!-- Spine center -->
+  <rect x="358" y="178" width="12" height="324" rx="2" fill="rgba(96,165,250,0.25)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+  <!-- Spine glow -->
+  <rect x="362" y="178" width="4" height="324" rx="2" fill="#60a5fa" opacity="0.4" filter="url(#et_glow_sm)"/>
+
+  <!-- Left page text lines -->
+  <rect x="140" y="210" width="160" height="6" rx="3" fill="rgba(240,236,228,0.18)"/>
+  <rect x="140" y="226" width="130" height="5" rx="2.5" fill="rgba(240,236,228,0.1)"/>
+  <rect x="140" y="240" width="150" height="5" rx="2.5" fill="rgba(240,236,228,0.1)"/>
+  <rect x="140" y="254" width="110" height="5" rx="2.5" fill="rgba(240,236,228,0.1)"/>
+  <!-- Divider -->
+  <rect x="140" y="272" width="180" height="1" rx="0.5" fill="rgba(96,165,250,0.2)"/>
+  <!-- More lines -->
+  <rect x="140" y="285" width="170" height="5" rx="2.5" fill="rgba(240,236,228,0.08)"/>
+  <rect x="140" y="299" width="140" height="5" rx="2.5" fill="rgba(240,236,228,0.08)"/>
+  <rect x="140" y="313" width="155" height="5" rx="2.5" fill="rgba(240,236,228,0.08)"/>
+  <rect x="140" y="327" width="120" height="5" rx="2.5" fill="rgba(240,236,228,0.08)"/>
+  <!-- Highlighted term -->
+  <rect x="140" y="345" width="100" height="18" rx="4" fill="rgba(96,165,250,0.15)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+  <rect x="148" y="351" width="70" height="5" rx="2.5" fill="rgba(96,165,250,0.55)"/>
+  <rect x="140" y="374" width="160" height="5" rx="2.5" fill="rgba(240,236,228,0.07)"/>
+  <rect x="140" y="388" width="135" height="5" rx="2.5" fill="rgba(240,236,228,0.07)"/>
+  <rect x="140" y="402" width="150" height="5" rx="2.5" fill="rgba(240,236,228,0.07)"/>
+  <!-- Page number -->
+  <text x="228" y="488" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(96,165,250,0.35)" letter-spacing="2">42</text>
+
+  <!-- Right page — AI response card -->
+  <rect x="388" y="208" width="200" height="100" rx="8" fill="rgba(200,242,71,0.05)" stroke="rgba(200,242,71,0.2)" stroke-width="1"/>
+  <!-- AI badge -->
+  <circle cx="406" cy="226" r="8" fill="#c8f247" opacity="0.9" filter="url(#et_glow_sm)"/>
+  <circle cx="406" cy="226" r="3" fill="white" opacity="0.9"/>
+  <text x="420" y="229" font-family="monospace" font-size="9" fill="rgba(200,242,71,0.7)" letter-spacing="1.5">AI TUTOR</text>
+  <rect x="400" y="240" width="168" height="5" rx="2.5" fill="rgba(200,242,71,0.3)"/>
+  <rect x="400" y="253" width="140" height="5" rx="2.5" fill="rgba(200,242,71,0.18)"/>
+  <rect x="400" y="266" width="155" height="5" rx="2.5" fill="rgba(200,242,71,0.12)"/>
+  <rect x="400" y="279" width="100" height="5" rx="2.5" fill="rgba(200,242,71,0.08)"/>
+  <!-- Typing animation dots -->
+  <rect x="388" y="320" width="72" height="28" rx="8" fill="rgba(200,242,71,0.07)" stroke="rgba(200,242,71,0.18)" stroke-width="1"/>
+  <circle cx="406" cy="334" r="4" fill="#c8f247" opacity="0.85"/>
+  <circle cx="420" cy="334" r="4" fill="#c8f247" opacity="0.5"/>
+  <circle cx="434" cy="334" r="4" fill="#c8f247" opacity="0.22"/>
+
+  <!-- Voice waveform bar right -->
+  <rect x="388" y="362" width="200" height="48" rx="8" fill="rgba(96,165,250,0.06)" stroke="rgba(96,165,250,0.18)" stroke-width="1"/>
+  <text x="396" y="380" font-family="monospace" font-size="8" fill="rgba(96,165,250,0.5)" letter-spacing="1.5">AUDIO LESSON</text>
+  <g transform="translate(396,392)">
+    <rect x="0"  y="-8" width="5" height="16" rx="2.5" fill="#60a5fa" opacity="0.4"/>
+    <rect x="8"  y="-14" width="5" height="28" rx="2.5" fill="#60a5fa" opacity="0.65"/>
+    <rect x="16" y="-5" width="5" height="10" rx="2.5" fill="#60a5fa" opacity="0.35"/>
+    <rect x="24" y="-18" width="5" height="36" rx="2.5" fill="#60a5fa" opacity="0.8"/>
+    <rect x="32" y="-9" width="5" height="18" rx="2.5" fill="#60a5fa" opacity="0.5"/>
+    <rect x="40" y="-13" width="5" height="26" rx="2.5" fill="#60a5fa" opacity="0.6"/>
+    <rect x="48" y="-4" width="5" height="8" rx="2.5" fill="#60a5fa" opacity="0.3"/>
+    <rect x="56" y="-16" width="5" height="32" rx="2.5" fill="#c8f247" opacity="0.7"/>
+    <rect x="64" y="-8" width="5" height="16" rx="2.5" fill="#c8f247" opacity="0.5"/>
+    <rect x="72" y="-12" width="5" height="24" rx="2.5" fill="#60a5fa" opacity="0.45"/>
+    <rect x="80" y="-6" width="5" height="12" rx="2.5" fill="#60a5fa" opacity="0.35"/>
+    <rect x="88" y="-20" width="5" height="40" rx="2.5" fill="#60a5fa" opacity="0.55"/>
+    <rect x="96" y="-7" width="5" height="14" rx="2.5" fill="#60a5fa" opacity="0.4"/>
+    <rect x="104" y="-10" width="5" height="20" rx="2.5" fill="#c8f247" opacity="0.6"/>
+    <rect x="112" y="-3" width="5" height="6" rx="2.5" fill="#60a5fa" opacity="0.28"/>
+    <rect x="120" y="-14" width="5" height="28" rx="2.5" fill="#60a5fa" opacity="0.5"/>
+    <rect x="128" y="-9" width="5" height="18" rx="2.5" fill="#60a5fa" opacity="0.38"/>
+    <rect x="136" y="-17" width="5" height="34" rx="2.5" fill="#60a5fa" opacity="0.62"/>
+    <rect x="144" y="-5" width="5" height="10" rx="2.5" fill="#60a5fa" opacity="0.32"/>
+    <rect x="152" y="-12" width="5" height="24" rx="2.5" fill="#c8f247" opacity="0.55"/>
+    <rect x="160" y="-8" width="5" height="16" rx="2.5" fill="#60a5fa" opacity="0.42"/>
+    <rect x="168" y="-15" width="5" height="30" rx="2.5" fill="#60a5fa" opacity="0.58"/>
+    <rect x="176" y="-4" width="5" height="8" rx="2.5" fill="#60a5fa" opacity="0.3"/>
+  </g>
+  <!-- Page number right -->
+  <text x="488" y="488" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(96,165,250,0.35)" letter-spacing="2">43</text>
+
+  <!-- ===== LANGUAGE BUBBLES ===== -->
+  <g>
+    <rect x="60" y="560" width="90" height="24" rx="6" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+    <text x="105" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="#60a5fa" letter-spacing="1">ENGLISH</text>
+    <rect x="162" y="560" width="70" height="24" rx="6" fill="rgba(200,242,71,0.08)" stroke="rgba(200,242,71,0.25)" stroke-width="1"/>
+    <text x="197" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="#c8f247" letter-spacing="1">HINDI</text>
+    <rect x="244" y="560" width="90" height="24" rx="6" fill="rgba(96,165,250,0.07)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+    <text x="289" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(96,165,250,0.7)" letter-spacing="1">HINGLISH</text>
+    <rect x="346" y="560" width="60" height="24" rx="6" fill="rgba(200,242,71,0.06)" stroke="rgba(200,242,71,0.18)" stroke-width="1"/>
+    <text x="376" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(200,242,71,0.6)" letter-spacing="1">URDU</text>
+    <rect x="418" y="560" width="80" height="24" rx="6" fill="rgba(96,165,250,0.07)" stroke="rgba(96,165,250,0.18)" stroke-width="1"/>
+    <text x="458" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(96,165,250,0.55)" letter-spacing="1">GERMAN</text>
+    <rect x="510" y="560" width="70" height="24" rx="6" fill="rgba(200,242,71,0.06)" stroke="rgba(200,242,71,0.16)" stroke-width="1"/>
+    <text x="545" y="576" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(200,242,71,0.5)" letter-spacing="1">FRENCH</text>
+  </g>
+
+  <!-- ===== RAG PIPELINE VISUAL ===== -->
+  <!-- PDF icon -->
+  <rect x="66" y="618" width="54" height="68" rx="6" fill="rgba(16,24,40,0.9)" stroke="rgba(96,165,250,0.25)" stroke-width="1.5"/>
+  <rect x="66" y="618" width="54" height="22" rx="6" fill="rgba(96,165,250,0.15)"/>
+  <text x="93" y="634" text-anchor="middle" font-family="monospace" font-size="8" fill="#60a5fa" letter-spacing="0.5">PDF</text>
+  <rect x="76" y="650" width="34" height="4" rx="2" fill="rgba(240,236,228,0.15)"/>
+  <rect x="76" y="660" width="28" height="4" rx="2" fill="rgba(240,236,228,0.1)"/>
+  <rect x="76" y="670" width="32" height="4" rx="2" fill="rgba(240,236,228,0.1)"/>
+
+  <!-- Arrow -->
+  <line x1="126" y1="652" x2="162" y2="652" stroke="rgba(96,165,250,0.45)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="162,648 170,652 162,656" fill="rgba(96,165,250,0.45)"/>
+
+  <!-- Embedding box -->
+  <rect x="174" y="626" width="100" height="52" rx="8" fill="rgba(16,24,40,0.9)" stroke="rgba(96,165,250,0.22)" stroke-width="1.5"/>
+  <text x="224" y="645" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(96,165,250,0.6)" letter-spacing="1">EMBED</text>
+  <rect x="184" y="652" width="80" height="4" rx="2" fill="rgba(96,165,250,0.3)"/>
+  <rect x="184" y="661" width="60" height="4" rx="2" fill="rgba(96,165,250,0.18)"/>
+  <rect x="184" y="670" width="70" height="4" rx="2" fill="rgba(96,165,250,0.12)"/>
+
+  <!-- Arrow -->
+  <line x1="280" y1="652" x2="316" y2="652" stroke="rgba(96,165,250,0.45)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="316,648 324,652 316,656" fill="rgba(96,165,250,0.45)"/>
+
+  <!-- ChromaDB hexagon-ish -->
+  <rect x="328" y="626" width="80" height="52" rx="8" fill="rgba(16,24,40,0.9)" stroke="rgba(200,242,71,0.22)" stroke-width="1.5"/>
+  <text x="368" y="645" text-anchor="middle" font-family="monospace" font-size="7.5" fill="rgba(200,242,71,0.6)" letter-spacing="0.5">CHROMADB</text>
+  <circle cx="350" cy="662" r="5" fill="rgba(200,242,71,0.4)"/>
+  <circle cx="368" cy="662" r="5" fill="rgba(200,242,71,0.6)" filter="url(#et_glow_sm)"/>
+  <circle cx="386" cy="662" r="5" fill="rgba(200,242,71,0.3)"/>
+
+  <!-- Arrow -->
+  <line x1="414" y1="652" x2="450" y2="652" stroke="rgba(200,242,71,0.45)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="450,648 458,656 450,656" fill="rgba(200,242,71,0.45)"/>
+  <polygon points="450,648 458,652 450,656" fill="rgba(200,242,71,0.45)"/>
+
+  <!-- Groq/LLaMA box -->
+  <rect x="462" y="618" width="110" height="68" rx="8" fill="rgba(16,24,40,0.9)" stroke="rgba(200,242,71,0.28)" stroke-width="1.5" filter="url(#et_glow_sm)"/>
+  <text x="517" y="638" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(200,242,71,0.8)" letter-spacing="1">GROQ · LLaMA</text>
+  <rect x="474" y="646" width="86" height="5" rx="2.5" fill="rgba(200,242,71,0.35)"/>
+  <rect x="474" y="657" width="70" height="5" rx="2.5" fill="rgba(200,242,71,0.2)"/>
+  <rect x="474" y="668" width="80" height="5" rx="2.5" fill="rgba(200,242,71,0.12)"/>
+
+  <!-- Arrow to response -->
+  <line x1="578" y1="652" x2="614" y2="652" stroke="rgba(200,242,71,0.5)" stroke-width="1.5"/>
+  <polygon points="614,648 622,652 614,656" fill="rgba(200,242,71,0.5)"/>
+
+  <!-- Response badge -->
+  <rect x="626" y="630" width="96" height="44" rx="8" fill="rgba(200,242,71,0.08)" stroke="rgba(200,242,71,0.35)" stroke-width="1.5" filter="url(#et_glow_sm)"/>
+  <text x="674" y="648" text-anchor="middle" font-family="monospace" font-size="8" fill="#c8f247" letter-spacing="1">ANSWER</text>
+  <rect x="636" y="656" width="64" height="4" rx="2" fill="rgba(200,242,71,0.4)"/>
+  <rect x="636" y="665" width="48" height="4" rx="2" fill="rgba(200,242,71,0.22)"/>
+
+  <!-- ===== TAGS top ===== -->
+  <rect x="60" y="50" width="90" height="26" rx="7" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+  <text x="105" y="68" text-anchor="middle" font-family="monospace" font-size="11" fill="#60a5fa" letter-spacing="1.5">GROQ API</text>
+  <rect x="162" y="50" width="100" height="26" rx="7" fill="rgba(200,242,71,0.08)" stroke="rgba(200,242,71,0.25)" stroke-width="1"/>
+  <text x="212" y="68" text-anchor="middle" font-family="monospace" font-size="11" fill="#c8f247" letter-spacing="1.5">EDGE TTS</text>
+  <rect x="274" y="50" width="100" height="26" rx="7" fill="rgba(96,165,250,0.07)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+  <text x="324" y="68" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(96,165,250,0.7)" letter-spacing="1.2">FASTAPI</text>
+
+  <!-- Floating code snippets -->
+  <text x="520" y="155" font-family="monospace" font-size="10" fill="rgba(200,242,71,0.3)" letter-spacing="1">lesson.generate(topic)</text>
+  <text x="520" y="595" font-family="monospace" font-size="10" fill="rgba(96,165,250,0.3)" letter-spacing="1">tts.stream(brick)</text>
+  <text x="60" y="155" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.1)" letter-spacing="1">rag.retrieve(query)</text>
+
+  <!-- Ghost text -->
+  <text x="400" y="880" text-anchor="middle" font-family="'Arial Black',sans-serif" font-weight="900" font-size="100" fill="rgba(96,165,250,0.028)" letter-spacing="-3">EDU</text>
+
+  <!-- Bottom bar -->
+  <line x1="0" y1="870" x2="800" y2="870" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <text x="60" y="890" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.2)" letter-spacing="2">AI LEARNING COMPANION</text>
+  <text x="740" y="890" text-anchor="end" font-family="monospace" font-size="10" fill="rgba(200,242,71,0.45)" letter-spacing="2">7 LANGS ↗</text>
+
+  <!-- Corner marks -->
+  <path d="M730,40 L760,40 L760,70" stroke="rgba(200,242,71,0.35)" stroke-width="1.5" fill="none"/>
+  <path d="M70,860 L40,860 L40,830" stroke="rgba(96,165,250,0.35)" stroke-width="1.5" fill="none"/>
+
+  <!-- Vertical label -->
+  <g transform="translate(22,600) rotate(-90)">
+    <text font-family="monospace" font-size="9" fill="rgba(255,255,255,0.1)" letter-spacing="3">MULTILINGUAL TUTOR · 2026</text>
+  </g>
+</svg>
